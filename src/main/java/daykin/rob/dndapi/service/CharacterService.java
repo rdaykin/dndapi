@@ -37,12 +37,20 @@ public class CharacterService {
         return gson.toJson(character);
     }
 
-    public void createCharacter(String name, int str, int dex, int con, int intel, int wis, int cha, int hp, int speed, int prof) {
-        Character character = buildCharacter(name, str, dex, con, intel, wis, cha, hp, speed, prof);
+    public void createCharacter(String name, int str, int dex, int con, int intel, int wis, int cha, int hp, int speed, int prof, int swimSpeed,
+            int flySpeed,
+            int armourClass,
+            int legendaryResistanceCount,
+            int challengeRating) {
+        Character character = buildCharacter(name, str, dex, con, intel, wis, cha, hp, speed, prof, swimSpeed, flySpeed, armourClass, legendaryResistanceCount, challengeRating);
         characterRepository.save(character);
     }
 
-    Character buildCharacter(String name, int str, int dex, int con, int intel, int wis, int cha, int hp, int speed, int prof){
+    Character buildCharacter(String name, int str, int dex, int con, int intel, int wis, int cha, int hp, int speed, int prof, int swimSpeed,
+                             int flySpeed,
+                             int armourClass,
+                             int legendaryResistanceCount,
+                             int challengeRating){
         return Character.builder()
                 .name(name)
                 .strength(str)
@@ -55,6 +63,11 @@ public class CharacterService {
                 .speed(speed)
                 .proficiencyBonus(prof)
                 .skills(new HashSet<>())
+                .swimSpeed(swimSpeed)
+                .flySpeed(flySpeed)
+                .armourClass(armourClass)
+                .legendaryResistanceCount(legendaryResistanceCount)
+                .challengeRating(challengeRating)
                 .build();
     }
 

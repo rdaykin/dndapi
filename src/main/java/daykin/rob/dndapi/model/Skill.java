@@ -1,6 +1,7 @@
 package daykin.rob.dndapi.model;
 
 import lombok.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import javax.persistence.Column;
 import javax.persistence.Id;

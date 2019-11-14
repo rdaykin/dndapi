@@ -29,8 +29,13 @@ public class CharacterController {
                                 @RequestParam(name= "charisma") int charisma,
                                 @RequestParam(name="hitpoints") int hitpoints,
                                 @RequestParam(name="speed") int speed,
-                                @RequestParam(name="profBonus") int proficiencyBonus){
-        characterService.createCharacter(name, strength, dexterity, constitution, intelligence, wisdom, charisma, hitpoints, speed, proficiencyBonus);
+                                @RequestParam(name="profBonus") int proficiencyBonus,
+                                @RequestParam(name="swimSpeed") int swimSpeed,
+                                @RequestParam(name = "flySpeed") int flySpeed,
+                                @RequestParam(name = "armourClass") int armourClass,
+                                @RequestParam(name = "legendaryResistanceCount") int legendaryResistanceCount,
+                                @RequestParam(name = "challengeRating") int challengeRating){
+        characterService.createCharacter(name, strength, dexterity, constitution, intelligence, wisdom, charisma, hitpoints, speed, proficiencyBonus, swimSpeed, flySpeed, armourClass, legendaryResistanceCount, challengeRating);
     }
 
     @RequestMapping("/character/{name}/setskills/{skills}")

@@ -27,7 +27,21 @@ public class Character {
     int charisma;
     int hitpoints;
     int speed;
+    int swimSpeed;
+    int flySpeed;
     int proficiencyBonus;
+    int armourClass;
+    int legendaryResistanceCount;
+    int challengeRating;
+    String languages;
+    String resistances;
+    String immunities;
+    String senses;
+
+    @OneToMany
+    @JoinColumn(name = "character_id")
+    Set<Action> actions;
+
     @OneToMany
     @JoinTable(
             name="characterProficiencies",

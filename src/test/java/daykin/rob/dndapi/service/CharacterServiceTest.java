@@ -45,22 +45,22 @@ public class CharacterServiceTest {
         skillsList.add(history);
         MockitoAnnotations.initMocks(this);
         characterService = new CharacterService(characterRepository, skillService);
-        jason = Character.builder().strength(1).dexterity(2).constitution(3).intelligence(4).wisdom(5).charisma(6).hitpoints(7).name("Jason").speed(8).proficiencyBonus(9).skills(new HashSet<>()).build();
+        jason = Character.builder().strength(1).dexterity(2).constitution(3).intelligence(4).wisdom(5).charisma(6).hitpoints(7).name("Jason").speed(8).proficiencyBonus(9).skills(new HashSet<>()).challengeRating(5).swimSpeed(10).flySpeed(20).armourClass(15).legendaryResistanceCount(3).build();
         when(characterRepository.findOneByName("Jason")).thenReturn(jason);
         when(skillService.getSkills(skillsString)).thenReturn(skillsList);
     }
 
     @Test
     public void testCreateCharacterSendsCorrectCharacterToRepo(){
-        characterService.createCharacter("Jason", 1, 2, 3, 4, 5, 6, 7, 8, 9);
+        characterService.createCharacter("Jason", 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 20, 15, 3, 5);
         verify(characterRepository).save(eq(jason));
     }
 
     @Test
     public void testGetCharacterasJsonReturnsCorrectJson(){
-        characterService.createCharacter("Jason", 1, 2, 3, 4, 5, 6, 7, 8, 9);
+        characterService.createCharacter("Jason", 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 20, 15, 3, 5);
         String jasonJson =  characterService.getCharacterAsJson("Jason");
-        assertEquals(jasonJson, "{\"name\":\"Jason\",\"strength\":1,\"dexterity\":2,\"constitution\":3,\"intelligence\":4,\"wisdom\":5,\"charisma\":6,\"hitpoints\":7,\"speed\":8,\"proficiencyBonus\":9,\"skills\":[]}");
+        assertEquals(jasonJson, "{\"name\":\"Jason\",\"strength\":1,\"dexterity\":2,\"constitution\":3,\"intelligence\":4,\"wisdom\":5,\"charisma\":6,\"hitpoints\":7,\"speed\":8,\"swimSpeed\":10,\"flySpeed\":20,\"proficiencyBonus\":9,\"armourClass\":15,\"legendaryResistanceCount\":3,\"challengeRating\":5,\"skills\":[]}");
     }
 
     @Test
