@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/dnddb
+    username:
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+    database: POSTGRESQL
