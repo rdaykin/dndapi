@@ -3,12 +3,10 @@ package daykin.rob.dndapi.controller;
 
 import daykin.rob.dndapi.service.CharacterService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin
 public class CharacterController {
 
     @Autowired
@@ -28,14 +26,8 @@ public class CharacterController {
                                 @RequestParam(name= "wisdom") int wisdom,
                                 @RequestParam(name= "charisma") int charisma,
                                 @RequestParam(name="hitpoints") int hitpoints,
-                                @RequestParam(name="speed") int speed,
-                                @RequestParam(name="profBonus") int proficiencyBonus,
-                                @RequestParam(name="swimSpeed") int swimSpeed,
-                                @RequestParam(name = "flySpeed") int flySpeed,
-                                @RequestParam(name = "armourClass") int armourClass,
-                                @RequestParam(name = "legendaryResistanceCount") int legendaryResistanceCount,
-                                @RequestParam(name = "challengeRating") int challengeRating){
-        characterService.createCharacter(name, strength, dexterity, constitution, intelligence, wisdom, charisma, hitpoints, speed, proficiencyBonus, swimSpeed, flySpeed, armourClass, legendaryResistanceCount, challengeRating);
+                                @RequestParam(name="speed") int speed){
+        characterService.createCharacter(name, strength, dexterity, constitution, intelligence, wisdom, charisma, hitpoints, speed, 0, 0, 0, 0, 0, 0);
     }
 
     @RequestMapping("/character/{name}/setskills/{skills}")
