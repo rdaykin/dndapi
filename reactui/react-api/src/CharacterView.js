@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import Character from './components/character';
+import CharacterForm from './components/characterform'
 
 class CharacterView extends Component {
 
@@ -19,6 +20,7 @@ class CharacterView extends Component {
     .catch(console.log)
     return (
       <Character character={this.state.character} />
+      //<CharacterForm/>
     );
   }
 }

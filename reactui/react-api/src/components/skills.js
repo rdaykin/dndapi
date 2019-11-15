@@ -8,8 +8,8 @@ const Skills = ({ skills }) => {
       <center><h1>Skill List</h1>
       {skills.map((skill) => (
         <div>
-          <h2 class="card-title">{skill.name}</h2>
-          <p class="card-text">{skill.governingStat}</p>
+          <h2 className="card-title">{skill.name}</h2>
+          <p className="card-text">{skill.governingStat}</p>
         </div>
       ))}</center>
     </div>
