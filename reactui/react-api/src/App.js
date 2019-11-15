@@ -1,20 +1,19 @@
 // src/App.js
 
-import React, { Component } from 'react';
+/*import React, { Component } from 'react';
 import Skills from './components/skills';
-import Contacts from './components/contacts'
 
 class App extends Component {
 
   state = {
         skills: [],
+        character: [],
         contacts: []
   }
 
   render () {
     return (
-      <p><Skills skills={this.state.skills} />
-      <Contacts contacts={this.state.contacts} /></p>
+      <Skills skills={this.state.skills} />
     );
   }
 
@@ -26,13 +25,44 @@ class App extends Component {
       this.setState({ skills: data })
     })
     .catch(console.log)
-    fetch("http://jsonplaceholder.typicode.com/users")
+  }
+}
+
+export default App;*/
+
+// src/CharacterView.js
+
+import React, { Component } from 'react';
+import Character from './components/character';
+
+class CharacterView extends Component {
+
+  state = {
+        character: []
+  }
+
+  render () {
+    /*fetch("http://localhost:8080/character/Fred")
     .then(res => res.json())
     .then((data) => {
-      this.setState({ contacts: data })
+      console.log(data)
+      this.setState({ character: data })
+    })
+    .catch(console.log)*/
+    return (
+      <Character character={this.state.character} />
+    );
+  }
+
+  componentDidMount() {
+    fetch("http://localhost:8080/character/Fred")
+    .then(res => res.json())
+    .then((data) => {
+      console.log(data)
+      this.setState({ character: data })
     })
     .catch(console.log)
   }
 }
 
-export default App;
+export default CharacterView;
