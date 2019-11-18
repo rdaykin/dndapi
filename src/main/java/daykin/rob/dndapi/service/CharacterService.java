@@ -17,18 +17,21 @@ public class CharacterService {
     @Autowired
     CharacterRepository characterRepository;
 
-    @Autowired
     SkillService skillService;
 
     GsonBuilder builder = new GsonBuilder();
 
-    public CharacterService(@Autowired CharacterRepository characterRepository, @Autowired SkillService skillService){
+    public CharacterService(CharacterRepository characterRepository, SkillService skillService){
         this.characterRepository = characterRepository;
         this.skillService = skillService;
     }
 
     public CharacterService(){
 
+    }
+
+    public void saveCharacter(Character character){
+        characterRepository.save(character);
     }
 
     public String getCharacterAsJson(String name){

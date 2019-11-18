@@ -19,7 +19,7 @@ class CharacterView extends Component {
   }
 
   componentDidMount() {
-    fetch("http://localhost:8080/character/Jeff")
+    fetch("http://localhost:8080/character/Fred")
     .then(res => res.json())
     .then((data) => {
       console.log(data)

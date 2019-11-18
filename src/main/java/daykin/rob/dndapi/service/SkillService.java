@@ -27,6 +27,10 @@ public class SkillService {
 
     public void addSkill(String name, String governingStat){
         Skill skill = Skill.builder().name(name).governingStat(governingStat).build();
+        addSkill(skill);
+    }
+
+    public void addSkill(Skill skill){
         skillRepository.save(skill);
     }
 

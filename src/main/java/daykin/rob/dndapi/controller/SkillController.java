@@ -5,10 +5,7 @@ import com.google.gson.GsonBuilder;
 import daykin.rob.dndapi.model.Skill;
 import daykin.rob.dndapi.service.SkillService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,8 +20,8 @@ public class SkillController {
     GsonBuilder gsonBuilder;
 
     @RequestMapping("/skill")
-    public void createSkill(@RequestParam("name") String name, @RequestParam("stat") String governingStat){
-        skillService.addSkill(name, governingStat);
+    public void createSkill(@RequestBody Skill skill){
+        skillService.addSkill(skill);
     }
 
     @RequestMapping("/skills")

@@ -81,21 +81,14 @@ class CharacterForm extends Component {
   submitForm(event){
     console.log(this.state)
     event.preventDefault();
-    var postlink = 'http://localhost:8080/newcharacter/'
-    + this.state.name
-    + "?strength=" + this.state.strength
-    + "&dexterity=" + this.state.dexterity
-    + "&constitution=" + this.state.constitution
-    + "&intelligence=" + this.state.intelligence
-    + "&wisdom=" + this.state.wisdom
-    + "&charisma=" + this.state.charisma
-    + "&hitpoints=" + this.state.hitpoints
-    + "&speed=" + this.state.speed
+    var postlink = 'http://localhost:8080/character'
+    var body = this.state;
+    console.log(JSON.stringify(this.state))
     fetch(postlink, {
      method: 'post',
      headers: {'Content-Type':'application/json'},
      body:
-      this.state
+        JSON.stringify(this.state)
     });
   }
 
