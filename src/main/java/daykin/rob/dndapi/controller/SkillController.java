@@ -1,10 +1,11 @@
 package daykin.rob.dndapi.controller;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import daykin.rob.dndapi.model.Skill;
 import daykin.rob.dndapi.service.SkillService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,7 +18,7 @@ public class SkillController {
     SkillService skillService;
 
     @Autowired
-    GsonBuilder gsonBuilder;
+    ObjectMapper objectMapper;
 
     @RequestMapping("/skill")
     public void createSkill(@RequestBody Skill skill){
@@ -25,10 +26,9 @@ public class SkillController {
     }
 
     @RequestMapping("/skills")
-    public String displaySkills(){
-        Gson gson = new Gson();
+    public String displaySkills() throws JsonProcessingException {
         List<Skill> skills = skillService.getSkills();
-        return gson.toJson(skills);
+        return objectMapper.writeValueAsString(skills);
     }
 
 }

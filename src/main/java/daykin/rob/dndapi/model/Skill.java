@@ -19,10 +19,10 @@ public class Skill {
 
     @Id
     @GeneratedValue
-    public Integer id;
-    public String governingStat;
+    private Integer id;
+    private String governingStat;
     @Column(unique = true)
-    public String name;
+    private String name;
 
     @Override
     public boolean equals(Object o){

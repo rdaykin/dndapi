@@ -6,22 +6,21 @@ import lombok.*;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "actions")
+@Table(name="special_abilities")
+@Builder
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
-public class Action {
+public class SpecialAbility {
 
     @Id
     @GeneratedValue
-    private Long id;
-    private String name;
+    private Integer id;
     @JsonAlias("desc")
     @Column(length = 2047)
     private String description;
-    private int damage_bonus;
-    private int attack_bonus;
-    private String damage_dice;
+    private String name;
+    private String character_id;
+
 }

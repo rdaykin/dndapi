@@ -1,36 +1,40 @@
 import React, { Component } from 'react';
 import Character from './components/character';
 import CharacterForm from './components/characterform'
-import Skills from './components/skills'
 
 class CharacterView extends Component {
 
   state = {
-        character: [],
-        skills: []
+    character: [],
+    skills: []
+  }
+
+  constructor(props){
+    super(props)
+    fetch("http://localhost:8080/character/Adult Blue Dragon")
+    .then(res => res.json())
+    .then((data) => {
+      console.log("DATA:" + data)
+      this.state.character = data
+    })
+    .catch(console.log)
   }
 
   render () {
+    console.log("Render time:" + JSON.stringify(this.state.character))
     return (
       <div><Character character={this.state.character} />
       <CharacterForm/>
-      <Skills skills={this.state.skills}/></div>
+      </div>
     );
   }
 
   componentDidMount() {
-    fetch("http://localhost:8080/character/Fred")
+    fetch("http://localhost:8080/character/Ghost")
     .then(res => res.json())
     .then((data) => {
-      console.log(data)
+      console.log("DATA:" + JSON.stringify(data))
       this.setState({ character: data })
-    })
-    .catch(console.log)
-    fetch("http://localhost:8080/skills")
-    .then(res => res.json())
-    .then((data) => {
-      console.log(data)
-      this.setState({ skills: data })
     })
     .catch(console.log)
   }

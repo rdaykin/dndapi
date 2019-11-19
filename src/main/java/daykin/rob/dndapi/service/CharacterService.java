@@ -1,7 +1,7 @@
 package daykin.rob.dndapi.service;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import daykin.rob.dndapi.model.Character;
 import daykin.rob.dndapi.model.Skill;
 import daykin.rob.dndapi.repository.CharacterRepository;
@@ -17,10 +17,10 @@ public class CharacterService {
     @Autowired
     CharacterRepository characterRepository;
 
+    @Autowired
     SkillService skillService;
 
-    GsonBuilder builder = new GsonBuilder();
-
+    ObjectMapper mapper = new ObjectMapper();
     public CharacterService(CharacterRepository characterRepository, SkillService skillService){
         this.characterRepository = characterRepository;
         this.skillService = skillService;
@@ -34,25 +34,20 @@ public class CharacterService {
         characterRepository.save(character);
     }
 
-    public String getCharacterAsJson(String name){
-        Gson gson = builder.create();
+    public String getCharacterAsJson(String name) throws JsonProcessingException {
         Character character = characterRepository.findOneByName(name);
-        return gson.toJson(character);
+        return mapper.writeValueAsString(character);
     }
 
-    public void createCharacter(String name, int str, int dex, int con, int intel, int wis, int cha, int hp, int speed, int prof, int swimSpeed,
-            int flySpeed,
+    public void createCharacter(String name, int str, int dex, int con, int intel, int wis, int cha, int hp, String speed, int prof,
             int armourClass,
-            int legendaryResistanceCount,
             int challengeRating) {
-        Character character = buildCharacter(name, str, dex, con, intel, wis, cha, hp, speed, prof, swimSpeed, flySpeed, armourClass, legendaryResistanceCount, challengeRating);
+        Character character = buildCharacter(name, str, dex, con, intel, wis, cha, hp, speed, prof, armourClass, challengeRating);
         characterRepository.save(character);
     }
 
-    Character buildCharacter(String name, int str, int dex, int con, int intel, int wis, int cha, int hp, int speed, int prof, int swimSpeed,
-                             int flySpeed,
+    Character buildCharacter(String name, int str, int dex, int con, int intel, int wis, int cha, int hp, String speed, int prof,
                              int armourClass,
-                             int legendaryResistanceCount,
                              int challengeRating){
         return Character.builder()
                 .name(name)
@@ -65,18 +60,13 @@ public class CharacterService {
                 .hitpoints(hp)
                 .speed(speed)
                 .proficiencyBonus(prof)
-                .skills(new HashSet<>())
-                .swimSpeed(swimSpeed)
-                .flySpeed(flySpeed)
                 .armourClass(armourClass)
-                .legendaryResistanceCount(legendaryResistanceCount)
                 .challengeRating(challengeRating)
                 .build();
     }
 
     public void allocateSkillsToCharacter(String name, List<Skill> skills){
         Character character = characterRepository.findOneByName(name);
-        character.getSkills().addAll(skills);
         characterRepository.save(character);
     }
 

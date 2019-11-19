@@ -75,20 +75,17 @@ class CharacterForm extends Component {
     this.setState({
       [name]: value
     });
-    console.log("NAME:" + name + " VALUE:" + target.value)
   }
 
   submitForm(event){
-    console.log(this.state)
     event.preventDefault();
     var postlink = 'http://localhost:8080/character'
-    var body = this.state;
-    console.log(JSON.stringify(this.state))
+    var body = JSON.stringify(this.state);
     fetch(postlink, {
      method: 'post',
      headers: {'Content-Type':'application/json'},
      body:
-        JSON.stringify(this.state)
+        body
     });
   }
 

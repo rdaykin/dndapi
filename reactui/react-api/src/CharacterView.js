@@ -19,8 +19,10 @@ class CharacterView extends Component {
     })
     .catch(console.log)
     return (
+      <div>
       <Character character={this.state.character} />
-      //<CharacterForm/>
+      <CharacterSkills character={this.state.character}/>
+      </div>
     );
   }
 }
