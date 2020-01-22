@@ -9,8 +9,7 @@ import java.util.Set;
 
 @Entity
 @Builder
-@Getter
-@Setter
+@Data
 @Table(name="characters")
 @NoArgsConstructor
 @AllArgsConstructor
@@ -108,9 +107,10 @@ public class Character {
 
     @OneToMany(cascade=CascadeType.ALL)
     @JoinColumn(name = "character_id")
+    @JsonAlias("special_abilities")
     Set<SpecialAbility> specialAbilities;
 
-    @Override
+    /*@Override
     public boolean equals(Object object){
         if(object == null || object.getClass() != Character.class){
             return false;
@@ -125,5 +125,5 @@ public class Character {
                 && character.getHitpoints() == hitpoints
                 && character.getSpeed() == speed
                 && character.getProficiencyBonus() == proficiencyBonus;
-    }
+    }*/
 }

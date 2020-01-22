@@ -22,5 +22,8 @@ public class SpecialAbility {
     private String description;
     private String name;
     private String character_id;
+    private int damage_bonus;
+    private int attack_bonus;
+    private String damage_dice;
 
 }

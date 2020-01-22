@@ -30,6 +30,9 @@ public class CharacterController {
 
     @PostMapping("/character")
     public void createCharacter(@RequestBody Character character){
+        if(character.getId() == null){
+            character.setId(String.valueOf(character.hashCode()));
+        }
         characterService.saveCharacter(character);
     }
 
@@ -47,6 +50,5 @@ public class CharacterController {
             characterService.saveCharacter(monster);
         }
     }
-
 
 }
